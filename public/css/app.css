@@ -576,10 +576,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .cursor-pointer {
   cursor: pointer;
 }
-.cursor-grab {
-  cursor: -webkit-grab;
-  cursor: grab;
-}
 .resize {
   resize: both;
 }

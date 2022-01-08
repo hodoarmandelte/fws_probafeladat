@@ -3,10 +3,10 @@
 @section('extra_header')
 
     <script type="text/javascript" src="{{ URL::asset('js/index_project_delete.js') }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+
     <script> var projectsdata = {!! $projects->toJson() !!} </script>
     <script> var projectscount = {!! $projects->count() !!} </script>
-    <meta name="currentpage" content="1">
-    <meta name="markedtodelete" content="X">
 
 @endsection
 

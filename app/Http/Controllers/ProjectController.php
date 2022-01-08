@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use Illuminate\Support\Facades\Log;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Projectcontact;
 
 class ProjectController extends Controller
 {
@@ -103,11 +105,18 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @return \Illuminate\Http\Response    -- JSON AJAXNAK
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
-        //
+        $project = Project::find($id);
+        //$project->delete();
+        //$projcontacts = Projectcontact::where('project_id','=',$id);
+        //$projcontacts->delete();
+        error_log('--proj-del--'.$id.' projekt sikeresen törölve.');
+        Log::info('--proj-del--'.$id.' projekt sikeresen törölve.');
+
+        return response()->json(array('success' => true, 'project_del_result'=>'ok'));
     }
 }
