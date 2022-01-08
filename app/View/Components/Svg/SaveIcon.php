@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Svg;
 
 use Illuminate\View\Component;
 
-class save extends Component
+class SaveIcon extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class save extends Component
      */
     public function render()
     {
-        return view('components.svg.save');
+        return view('components.svg.save-icon');
     }
 }

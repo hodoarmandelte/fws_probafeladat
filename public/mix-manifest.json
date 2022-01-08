@@ -3,6 +3,8 @@
     "/js/jquery-3.6.0.min.js": "/js/jquery-3.6.0.min.js",
     "/css/app.css": "/css/app.css",
     "/js/bootstrap.js": "/js/bootstrap.js",
+    "/js/edit_project_save.js": "/js/edit_project_save.js",
+    "/js/flowbite.bundle.js": "/js/flowbite.bundle.js",
     "/js/index_project_delete.js": "/js/index_project_delete.js",
     "/js/jquery-3.6.0.min.map": "/js/jquery-3.6.0.min.map"
 }

@@ -1,14 +1,4 @@
-// Util:
-
-function add_disabled(inputelement)  //  Disable DOM input komponenst
-{
-    if (!$(inputelement).attr('disabled'))
-    {
-        $(inputelement).attr({
-            'disabled': 'disabled'
-          });
-    }
-}
+//  Util:
 
 var disabledbuttongroup = `
     <div id="project_edit_button_deleted" class="w-6 mr-2 cursor-not-allowed">
@@ -59,8 +49,11 @@ function delete_project(id)
             console.log(id+". projekt törlési kérelme sikeresen feldolgoza szerveroldalon.");
             $('#Modal_delresult').removeClass('invisible');
             $('#tr_'+id).addClass('deletedrecord');
-            $('#project_buttons_'+id).empty();
-            $('#project_buttons_'+id).append(disabledbuttongroup);
+            if (window.location.href.indexOf("index") != -1)
+            {
+                $('#project_buttons_'+id).empty();
+                $('#project_buttons_'+id).append(disabledbuttongroup);
+            }
         },
         error:function(xhr, ajaxOptions, thrownError)
         {

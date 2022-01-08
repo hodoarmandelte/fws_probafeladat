@@ -13,8 +13,6 @@
 <body class="min-h-screen flex items-center justify-center" style="background: #edf2f7;">
     @yield('content')
 
-    {{-- Blade komponensnek színek force compile: --}}
-    <p hidden class="text-sky-900 bg-sky-200">p</p>
 </body>
 
 </html>

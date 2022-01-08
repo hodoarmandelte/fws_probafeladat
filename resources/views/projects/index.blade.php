@@ -18,7 +18,7 @@
                 <span class="text-xs" id="projects_info_summary" >Az összes projekt listája</span>
             </div>
             <div class="flex items-center justify-between">
-                <x-svg.search/>
+
                 <div class="lg:ml-40 ml-10 space-x-8">
                     <button class="button-new">Új Projekt</button>
                     <button class="button-new">Új kontaktszemély</button>

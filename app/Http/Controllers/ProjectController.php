@@ -22,28 +22,23 @@ class ProjectController extends Controller
     }
 
     /**
-     * Kategóriára szűrt eredmények JSONban az aszinkron szűréshez.
+     * Kategóriára szűrt eredmények
      *
      * @param  int $filter
      * @return \Illuminate\Http\Response
      */
-    public function index_filtered_json($filter)
+    public function index_filtered($filter)
     {
         $statetypes = ['0','1','2'];
         if ( !in_array($filter, $statetypes))
         {
-            return '0';
+            $projects = Project::paginate(10);
+            return view('projects/index')->with(compact('projects'));
         }
         else
         {
-            $projects = Project::where('state','=',$filter)->get();
-            $projects_count = $projects->count();
-            $projects_to_show = 10;
-            if ($projects_count<10)
-            {
-                $projects_to_show = $projects_count;
-            }
-            return $projects->toJson();
+            $projects = Project::where('state','=',$filter)->paginate(10);
+            return view('projects/index')->with(compact('projects'));
         }
     }
 
@@ -82,12 +77,13 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Project  $project
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit($id)
     {
-        //
+        $project = Project::findOrFail($id);
+        return view('projects/edit')->with(compact('project'));
     }
 
     /**
