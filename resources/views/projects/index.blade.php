@@ -57,12 +57,11 @@
                                     <td class="crud-td">
                                         <p id="contacts_{{$project->id}}">{{$project->contacts->count()}} db</p>
                                     </td>
-                                    <td class="crud-td flex item-center justify-center">
-                                        <div class="w-6 mr-2 transform hover:text-yellow-400 hover:scale-110">
+                                    <td id="project_buttons_{{$project->id}}" class="crud-td flex item-center justify-center">
+                                        <div id="project_edit_button_{{$project->id}}" class="w-6 mr-2 transform hover:text-yellow-400 hover:scale-110">
                                             <a title = "Szerkesztés" href = "{{url('/users/'.' '.'/edit')}}"><x-svg.edit-icon/></a>
                                         </div>
-                                        <!--openModal_delconfirm-->
-                                        <div class="w-6 mr-2 transform hover:text-red-600 hover:scale-110 cursor-pointer" onclick="mark_project_for_delete({{$project}})">
+                                        <div id="project_delete_button_{{$project->id}}" class="w-6 mr-2 transform hover:text-red-600 hover:scale-110 cursor-pointer" onclick="mark_project_for_delete({{$project}})">
                                             <span title="Törlés"><x-svg.delete-icon/></span>
                                         </div>
                                     </td>
@@ -79,14 +78,18 @@
         </div>
     </div>
 
+
     <x-ui.deleteconfirm_modal/>
+    <x-ui.deleteresult_modal/>
 
     <script type="text/javascript">
         $(document).ready(function ()
         {
-
             $('.closeModal_delconfirm').on('click', function(e){
                 $('#Modal_delconfirm').addClass('invisible');
+            });
+            $('.closeModal_delresult').on('click', function(e){
+                $('#Modal_delresult').addClass('invisible');
             });
         });
     </script>

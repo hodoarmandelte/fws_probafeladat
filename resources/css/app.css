@@ -59,3 +59,9 @@
 {
     @apply text-gray-900;
 }
+
+
+.deletedrecord
+{
+    @apply opacity-20 bg-gray-500 text-red-400 cursor-not-allowed;
+}

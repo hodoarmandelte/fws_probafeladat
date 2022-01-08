@@ -1,3 +1,23 @@
+// Util:
+
+function add_disabled(inputelement)  //  Disable DOM input komponenst
+{
+    if (!$(inputelement).attr('disabled'))
+    {
+        $(inputelement).attr({
+            'disabled': 'disabled'
+          });
+    }
+}
+
+var disabledbuttongroup = `
+    <div id="project_edit_button_deleted" class="w-6 mr-2 cursor-not-allowed">
+    <span title="Törlölt projekt">-</span>
+    </div>
+    <div id="project_delete_button_deleted" class="w-6 mr-2 cursor-not-allowed">
+    <span title="Törlölt projekt">-</span>
+    </div>`;
+
 // Projekt törlése, megerősítés után
 
 function mark_project_for_delete(projectdata)
@@ -37,6 +57,10 @@ function delete_project(id)
         success:function(data)
         {
             console.log(id+". projekt törlési kérelme sikeresen feldolgoza szerveroldalon.");
+            $('#Modal_delresult').removeClass('invisible');
+            $('#tr_'+id).addClass('deletedrecord');
+            $('#project_buttons_'+id).empty();
+            $('#project_buttons_'+id).append(disabledbuttongroup);
         },
         error:function(xhr, ajaxOptions, thrownError)
         {

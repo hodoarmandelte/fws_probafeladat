@@ -111,9 +111,9 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         $project = Project::find($id);
-        //$project->delete();
-        //$projcontacts = Projectcontact::where('project_id','=',$id);
-        //$projcontacts->delete();
+        $project->delete();
+        $projcontacts = Projectcontact::where('project_id','=',$id);
+        $projcontacts->delete();
         error_log('--proj-del--'.$id.' projekt sikeresen törölve.');
         Log::info('--proj-del--'.$id.' projekt sikeresen törölve.');
 
