@@ -22,7 +22,7 @@ Route::get('/', function () {
     return Redirect::route('projects.index');
 });
 
-Route::get('/projects_filtered/{filter}', [ProjectController::class, 'index_filtered']);
+Route::get('/projects_filtered/{filter}', [ProjectController::class, 'index_filtered'])->name('index_filtered');
 
 Route::resource('projects', ProjectController::class);
 

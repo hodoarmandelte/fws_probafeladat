@@ -18,7 +18,8 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::paginate(10);
-        return view('projects/index')->with(compact('projects'));
+        $filter = 3;
+        return view('projects/index')->with(compact('projects'))->with(compact('filter'));
     }
 
     /**
@@ -33,12 +34,12 @@ class ProjectController extends Controller
         if ( !in_array($filter, $statetypes))
         {
             $projects = Project::paginate(10);
-            return view('projects/index')->with(compact('projects'));
+            return redirect()->route('projects.index');
         }
         else
         {
             $projects = Project::where('state','=',$filter)->paginate(10);
-            return view('projects/index')->with(compact('projects'));
+            return view('projects/index')->with(compact('projects'))->with(compact('filter'));
         }
     }
 

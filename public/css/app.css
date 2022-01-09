@@ -667,11 +667,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
+.rounded-l-lg {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+.rounded-r-lg {
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
 .border {
   border-width: 1px;
 }
 .border-2 {
   border-width: 2px;
+}
+.border-4 {
+  border-width: 4px;
 }
 .border-b-2 {
   border-bottom-width: 2px;
@@ -754,6 +765,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-sky-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(186 230 253 / var(--tw-bg-opacity));
+}
+.bg-slate-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
+.bg-slate-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+}
+.bg-slate-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
@@ -950,6 +973,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-sky-900 {
   --tw-text-opacity: 1;
   color: rgb(12 74 110 / var(--tw-text-opacity));
+}
+.text-slate-900 {
+  --tw-text-opacity: 1;
+  color: rgb(15 23 42 / var(--tw-text-opacity));
+}
+.text-slate-800 {
+  --tw-text-opacity: 1;
+  color: rgb(30 41 59 / var(--tw-text-opacity));
 }
 .underline {
   -webkit-text-decoration-line: underline;
@@ -1331,6 +1362,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-gray-200:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
+}
+
+
+.hover\:bg-slate-200:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }
 
 

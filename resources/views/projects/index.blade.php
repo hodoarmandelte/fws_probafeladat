@@ -21,6 +21,14 @@
                 <h2 class="text-gray-600 font-semibold">Projektek</h2>
                 <span class="text-xs" id="projects_info_summary">Az összes projekt listája</span>
             </div>
+            <div class="flex justify items-center">
+                <x-ui.index-state-filter-dropdownmenu type="{{ $filter }}" />
+                <a id="index_filter_button" href="{{ route('index_filtered', '3') }}">
+                    <div class="text-slate-900 bg-slate-300 hover:bg-slate-200 border-2 border-solid border-gray-600 font-medium rounded-r-lg text-sm px-4 py-2.5 text-center inline-flex items-center cursor-pointer">
+                        <x-svg.search />
+                    </div>
+                </a>
+            </div>
             <div class="flex items-center justify-between">
                 <div class="lg:ml-40 ml-10 space-x-8">
                     <button class="button-new"><a href="{{ route('projects.create') }}">Új Projekt</a></button>
@@ -63,7 +71,7 @@
                                     </td>
                                     <td id="project_buttons_{{ $project->id }}" class="crud-td flex item-center justify-center">
                                         <div id="project_edit_button_{{ $project->id }}" class="w-6 mr-2 transform hover:text-yellow-400 hover:scale-110">
-                                            <a title="Szerkesztés" href="{{ url('/users/' . ' ' . '/edit') }}">
+                                            <a title="Szerkesztés" href="{{ route('projects.edit', $project->id) }}">
                                                 <x-svg.edit-icon />
                                             </a>
                                         </div>
@@ -107,6 +115,7 @@
             $('.closeModal_contact_saved').on('click', function(e) {
                 $('#Modal_contactsavedresult').addClass('invisible');
             });
+            set_statedropdown_initcolor();
         });
     </script>
 
