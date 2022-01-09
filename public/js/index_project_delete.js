@@ -1,11 +1,8 @@
 //  Util:
 
 var disabledbuttongroup = `
-    <div id="project_edit_button_deleted" class="w-6 mr-2 cursor-not-allowed">
-    <span title="Törlölt projekt">-</span>
-    </div>
     <div id="project_delete_button_deleted" class="w-6 mr-2 cursor-not-allowed">
-    <span title="Törlölt projekt">-</span>
+    <span title="Törlölt projekt">Törölve</span></span>
     </div>`;
 
 // Projekt törlése, megerősítés után
@@ -49,7 +46,7 @@ function delete_project(id)
             console.log(id+". projekt törlési kérelme sikeresen feldolgoza szerveroldalon.");
             $('#Modal_delresult').removeClass('invisible');
             $('#tr_'+id).addClass('deletedrecord');
-            if (window.location.href.indexOf("index") != -1)
+            if (window.location.href.indexOf("projects") != -1)
             {
                 $('#project_buttons_'+id).empty();
                 $('#project_buttons_'+id).append(disabledbuttongroup);

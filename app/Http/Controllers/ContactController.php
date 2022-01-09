@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Projectcontact;
+use Illuminate\Support\Facades\Log;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 
@@ -25,7 +27,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+            return view('contacts/create');
     }
 
     /**
@@ -39,9 +41,11 @@ class ContactController extends Controller
         $contact = new Contact;
         $validated = $request->validate([
             'name' => 'required|string|unique:contacts,name|max:35',
-            'email' => 'required|string|max:128',
+            'email' => 'required|email|max:128',
         ]);
         $contact->fill($validated)->save();
+        session()->flash('contact_saved');
+        return redirect('projects');
     }
 
     /**
@@ -78,7 +82,7 @@ class ContactController extends Controller
     {
         $request->validate([
             'name' => 'required|string|unique:contacts,name,'.$contact->id.'|max:35',
-            'email' => 'required|string|max:128',
+            'email' => 'required|email|max:128',
         ]);
         $contact->update($request->all());
         session()->flash('contact_updated');
@@ -93,6 +97,13 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        $contact = Contact::find($contact->id);
+        $contact->delete();
+        $projcontacts = Projectcontact::where('contact_id','=',$contact->id);
+        $projcontacts->delete();
+        error_log('--cont-del--'.$contact->id.' kontakt sikeresen törölve.');
+        Log::info('--cont-del--'.$contact->id.' kontakt sikeresen törölve.');
+
+        return response()->json(array('success' => true, 'contact_del_result'=>'ok'));
     }
 }

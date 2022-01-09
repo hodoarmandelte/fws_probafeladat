@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectcontactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +22,13 @@ Route::get('/', function () {
     return Redirect::route('projects.index');
 });
 
+Route::get('/projects_filtered/{filter}', [ProjectController::class, 'index_filtered']);
+
 Route::resource('projects', ProjectController::class);
 
-Route::get('/projects_filtered_json/{filter}', [ProjectController::class, 'index_filtered_json']);
-
 Route::resource('contacts', ContactController::class);
+
+Route::resource('projectcontacts', ProjectcontactController::class);
 
 
 

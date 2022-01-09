@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Projectcontact;
+use Illuminate\Support\Facades\Log;
 
 class ProjectcontactController extends Controller
 {
@@ -74,11 +76,16 @@ class ProjectcontactController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $contact_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($contact_id)
     {
-        //
+        $projcontact = ProjectContact::find($contact_id);
+        $projcontact->delete();
+        error_log('--proj-cont-del--'.$contact_id.' projekt-kontakt sikeresen törölve.');
+        Log::info('--proj-cont-del--'.$contact_id.' projekt-kontakt sikeresen törölve.');
+
+        return response()->json(array('success' => true, 'project_del_result'=>'ok'));
     }
 }
