@@ -7,5 +7,6 @@
     "/js/flowbite.bundle.js": "/js/flowbite.bundle.js",
     "/js/index_project_delete.js": "/js/index_project_delete.js",
     "/js/jquery-3.6.0.min.map": "/js/jquery-3.6.0.min.map",
-    "/js/index_filter_urlbuilder.js": "/js/index_filter_urlbuilder.js"
+    "/js/index_filter_urlbuilder.js": "/js/index_filter_urlbuilder.js",
+    "/js/edit_project.js": "/js/edit_project.js"
 }

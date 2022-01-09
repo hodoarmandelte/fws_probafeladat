@@ -2,6 +2,7 @@
 
 @section('extra_header')
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <script type="text/javascript" src="{{ URL::asset('js/edit_project.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/index_project_delete.js') }}"></script>
 @endsection
 
@@ -57,7 +58,7 @@
                                 <td class="crud-td">
                                     <p id="contacts_{{ $project->id }}">{{ $project->contacts->count() }} db</p>
                                 </td>
-                                <td id="project_buttons_{{ $project->id }}" class="crud-td flex item-center justify-center">
+                                <td id="project_buttons_{{ $project->id }}" class="crud-td">
                                     <div id="project_delete_button_{{ $project->id }}" class="w-6 mr-2 transform hover:text-red-600 hover:scale-110 cursor-pointer" onclick="mark_project_for_delete({{ $project }})">
                                         <span title="Törlés">
                                             <x-svg.delete-icon />
@@ -95,10 +96,10 @@
                                             <p>{{ $contact->id }}</p>
                                         </td>
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <input type="text" name="email" size="35" maxlength="35" value="{{ $contact->name }}" class="border-2 border-solid border-gray-400 rounded-md p-1"></input>
+                                            <input id="contact_name_{{$contact->id}}" type="text" name="email" size="35" maxlength="35" value="{{ $contact->name }}" class="border-2 border-solid border-gray-400 rounded-md p-1"></input>
                                         </td>
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                            <input type="text" name="email" size="128" maxlength="128" value="{{ $contact->email }}" class="border-2 border-solid border-gray-400 rounded-md p-1"></input>
+                                            <input id="contact_email_{{$contact->id}}" type="text" name="email" size="128" maxlength="128" value="{{ $contact->email }}" class="border-2 border-solid border-gray-400 rounded-md p-1"></input>
                                         </td>
                                         <td id="contact_buttons_{{ $contact->id }}" class="crud-td flex item-center justify-center">
                                             <button title="Mentés" type="submit" class="w-6 mr-2 transform hover:text-blue-600 hover:scale-110">
@@ -127,8 +128,12 @@
     <x-ui.deleteconfirm_modal />
     <x-ui.deleteresult_modal />
 
+    <x-ui.contactdeleteconfirm_modal />
+    <x-ui.contactdeleteresult_modal />
+
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function()
+        {
             set_statedropdown_initcolor();
             $('.closeModal_delconfirm').on('click', function(e) {
                 $('#Modal_delconfirm').addClass('invisible');
@@ -136,6 +141,13 @@
             $('.closeModal_delresult').on('click', function(e) {
                 $('#Modal_delresult').addClass('invisible');
                 $(location).attr("href", "/");
+            });
+            $('.closeModal_contact_delconfirm').on('click', function(e) {
+                $('#Modal_contact_delconfirm').addClass('invisible');
+            });
+            $('.closeModal_contact_delresult').on('click', function(e) {
+                $('#Modal_contact_delresult').addClass('invisible');
+                //$(location).attr("href", "/");
             });
         });
     </script>

@@ -79,13 +79,13 @@ class ProjectcontactController extends Controller
      * @param  int  $contact_id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($contact_id)
+    public function destroy($id)
     {
-        $projcontact = ProjectContact::find($contact_id);
+        $projcontact = ProjectContact::find($id);
         $projcontact->delete();
-        error_log('--proj-cont-del--'.$contact_id.' projekt-kontakt sikeresen törölve.');
-        Log::info('--proj-cont-del--'.$contact_id.' projekt-kontakt sikeresen törölve.');
+        error_log('--proj-cont-del--'.$id.' projekt-kontakt sikeresen törölve.');
+        Log::info('--proj-cont-del--'.$id.' projekt-kontakt sikeresen törölve.');
 
-        return response()->json(array('success' => true, 'project_del_result'=>'ok'));
+        return response()->json(array('success' => true, 'projectcontact_del_result'=>'ok'));
     }
 }

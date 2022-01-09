@@ -5,13 +5,6 @@
     <script type="text/javascript" src="{{ URL::asset('js/index_project_delete.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    <script>
-        var projectsdata = {!! $projects->toJson() !!}
-    </script>
-    <script>
-        var projectscount = {!! $projects->count() !!}
-    </script>
-
 @endsection
 
 @section('content')
@@ -69,7 +62,7 @@
                                     <td class="crud-td">
                                         <p id="contacts_{{ $project->id }}">{{ $project->contacts->count() }} db</p>
                                     </td>
-                                    <td id="project_buttons_{{ $project->id }}" class="crud-td flex item-center justify-center">
+                                    <td id="project_buttons_{{ $project->id }}" class="crud-td flex justify-start">
                                         <div id="project_edit_button_{{ $project->id }}" class="w-6 mr-2 transform hover:text-yellow-400 hover:scale-110">
                                             <a title="Szerkesztés" href="{{ route('projects.edit', $project->id) }}">
                                                 <x-svg.edit-icon />

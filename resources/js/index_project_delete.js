@@ -27,7 +27,7 @@ function mark_project_for_delete(projectdata)
     $('#delconfirmProjectinfo_contacts').html(projectdata['contacts'].length+' db');
     $('#delconfirmProjectinfo_desc').html(projectdata['desc']);
     $('#delconfirmProjectinfo_created').html(projectdata['created_at']);
-    $('#delconfirmProjectinfo_lastsaved').html(projectdata['modified_at']);
+    $('#delconfirmProjectinfo_lastsaved').html(projectdata['updated_at']);
     $("#modal_exec_confirmed_delete").attr('onclick', delcommand);
     $('#Modal_delconfirm').removeClass('invisible');
 }
