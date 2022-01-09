@@ -4,6 +4,7 @@
 
     <script type="text/javascript" src="{{ URL::asset('js/index_project_delete.js') }}"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <title>FWS-HA: Projektlista</title>
 
 @endsection
 
@@ -24,8 +25,7 @@
             </div>
             <div class="flex items-center justify-between">
                 <div class="lg:ml-40 ml-10 space-x-8">
-                    <button class="button-new"><a href="{{ route('projects.create') }}">Új Projekt</a></button>
-                    <button class="button-new"><a href="{{ route('contacts.create') }}">Új kontaktszemély</a></button>
+                    <button class="button-new"><a href="{{ route('projects.create') }}"><span>Új Projekt</span></a></button>
                 </div>
             </div>
         </div>
@@ -94,6 +94,8 @@
     <x-ui.contactupdated_modal />
     <x-ui.contactsaved_modal />
 
+    <x-ui.projectsaved_modal/>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('.closeModal_delconfirm').on('click', function(e) {
@@ -108,6 +110,9 @@
             $('.closeModal_contact_saved').on('click', function(e) {
                 $('#Modal_contactsavedresult').addClass('invisible');
             });
+            $('.closeModal_project_saved').on('click', function(e) {
+                $('#Modal_projectsaved').addClass('invisible');
+            });
             set_statedropdown_initcolor();
         });
     </script>
@@ -119,6 +124,10 @@
     @elseif(Session::has('contact_saved'))
         <script>
             $('#Modal_contactsavedresult').removeClass('invisible');
+        </script>
+    @elseif(Session::has('project_saved'))
+        <script>
+            $('#Modal_projectsaved').removeClass('invisible');
         </script>
     @endif
 

@@ -4,6 +4,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <script type="text/javascript" src="{{ URL::asset('js/edit_project.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/index_project_delete.js') }}"></script>
+    <title>FWS-HA: Projekt űrlap</title>
 @endsection
 
 @section('content')

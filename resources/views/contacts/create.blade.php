@@ -22,7 +22,7 @@
                 </div>
                 <div class="lg:ml-40 ml-10 space-x-8">
                     <div class="button-back"><a href="
-                        @if (str_contains(url()->previous(), 'edit'))
+                        @if (str_contains(url()->previous(), 'create'))
                        {{ route('projects.index') }}
                    @else
                        {{ url()->previous() }}
