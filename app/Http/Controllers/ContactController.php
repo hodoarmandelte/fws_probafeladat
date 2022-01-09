@@ -36,7 +36,12 @@ class ContactController extends Controller
      */
     public function store(StoreContactRequest $request)
     {
-        //
+        $contact = new Contact;
+        $validated = $request->validate([
+            'name' => 'required|string|unique:contacts,name|max:35',
+            'email' => 'required|string|max:128',
+        ]);
+        $contact->fill($validated)->save();
     }
 
     /**
@@ -56,9 +61,10 @@ class ContactController extends Controller
      * @param  \App\Models\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contact $contact)
+    public function edit($id)
     {
-        //
+        $contact = Contact::findOrFail($id);
+        return view('contacts/edit')->with(compact('contact'));
     }
 
     /**
@@ -70,7 +76,13 @@ class ContactController extends Controller
      */
     public function update(UpdateContactRequest $request, Contact $contact)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|unique:contacts,name,'.$contact->id.'|max:35',
+            'email' => 'required|string|max:128',
+        ]);
+        $contact->update($request->all());
+        session()->flash('contact_updated');
+        return redirect('projects');
     }
 
     /**

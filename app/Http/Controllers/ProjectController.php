@@ -60,7 +60,13 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $project = new Project;
+        $validated = $request->validate([
+            'name' => 'required|string|unique:projects,name|max:35',
+            'desc' => 'required|string|max:128',
+            'state' => 'required|digits_between:0,2',
+        ]);
+        $project->fill($validated)->save();
     }
 
     /**
@@ -83,7 +89,8 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Project::findOrFail($id);
-        return view('projects/edit')->with(compact('project'));
+        $contacts = $project->contacts;
+        return view('projects/edit')->with(compact('project'))->with(compact('contacts'));
     }
 
     /**
@@ -95,7 +102,13 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|unique:projects,name,'.$request->id.'|max:35',
+            'desc' => 'required|string|max:128',
+            'state' => 'required|digits_between:0,2',
+        ]);
+
+        $project->fill($validated)->update();
     }
 
     /**
