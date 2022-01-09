@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use Illuminate\Http\Request;
 use App\Models\Projectcontact;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 
@@ -42,10 +44,20 @@ class ContactController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|unique:contacts,name|max:35',
             'email' => 'required|email|max:128',
+            'project_id' => 'numeric'
         ]);
         $contact->fill($validated)->save();
+
+        if ($validated['project_id'] != '-1')       //  nem a create view-ból
+        {
+            $linktoprojectrequest = new Request;
+            $linktoprojectrequest->setMethod('POST');
+            $linktoprojectrequest->request->add(['project_id' => $validated['project_id']]);
+            $linktoprojectrequest->request->add(['contact_id' => $contact->id]);
+            ProjectcontactController::store($linktoprojectrequest);
+        }
         session()->flash('contact_saved');
-        return redirect('projects');
+        return Redirect::back();
     }
 
     /**
@@ -86,7 +98,7 @@ class ContactController extends Controller
         ]);
         $contact->update($request->all());
         session()->flash('contact_updated');
-        return redirect('projects');
+        return Redirect::back();
     }
 
     /**

@@ -50,3 +50,4 @@ function delete_contact(id)
         }
     });
 }
+

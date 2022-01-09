@@ -1,6 +1,6 @@
 
 <span id="edit_state_dropdown_initvalue" hidden>{{$text}}</span>
-<select id="state" onChange="set_statecolor()" class="{{ $colors[0] }} {{ $colors[1] }} {{$colors[2]}} font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" name="state" id="state">
+<select id="state" nam="state" onChange="set_statecolor()" class="{{ $colors[0] }} {{ $colors[1] }} {{$colors[2]}} font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center" name="state" id="state">
     <option id="edit_state_dropdown_option_0" value="0">Fejlesztésre vár</option>
     <option id="edit_state_dropdown_option_1" value="1">Folyamatban</option>
     <option id="edit_state_dropdown_option_2" value="2">Kész</option>

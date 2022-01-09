@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Projectcontact;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
-use App\Models\Projectcontact;
 
 class ProjectController extends Controller
 {
@@ -103,13 +104,18 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|unique:projects,name,'.$request->id.'|max:35',
+        //dd($project->id);
+        $request->validate([
+            'name' => 'required|string|unique:projects,name,'.$project->id.'|max:35',
             'desc' => 'required|string|max:128',
             'state' => 'required|digits_between:0,2',
         ]);
 
-        $project->fill($validated)->update();
+        $project->update($request->all());
+        session()->flash('project_updated');
+        return Redirect::back();
+        //return response()->json(array('success' => true, 'project_edit_result'=>'ok'));
+
     }
 
     /**

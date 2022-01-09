@@ -17,7 +17,7 @@
             <div class="flex justify items-center">
                 <x-ui.index-state-filter-dropdownmenu type="{{ $filter }}" />
                 <a id="index_filter_button" href="{{ route('index_filtered', '3') }}">
-                    <div class="text-slate-900 bg-slate-300 hover:bg-slate-200 border-2 border-solid border-gray-600 font-medium rounded-r-lg text-sm px-4 py-2.5 text-center inline-flex items-center cursor-pointer">
+                    <div class="text-slate-800 hover:text-black bg-slate-300 hover:bg-slate-200 border-2 border-solid border-gray-600 font-medium rounded-r-lg text-sm px-4 py-2.5 text-center inline-flex items-center cursor-pointer">
                         <x-svg.search />
                     </div>
                 </a>
@@ -52,8 +52,8 @@
                         </thead>
                         <tbody>
                             @foreach ($projects as $project)
-                                <tr id="tr_{{ $project->id }}">
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <tr class="crud-tr" id="tr_{{ $project->id }}">
+                                    <td class="crud-td">
                                         <p id="name_{{ $project->id }}">{{ $project->name }}</p>
                                     </td>
                                     <td class="crud-td">

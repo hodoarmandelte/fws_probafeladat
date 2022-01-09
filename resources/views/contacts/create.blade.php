@@ -20,6 +20,15 @@
                     </div>
                     @endif
                 </div>
+                <div class="lg:ml-40 ml-10 space-x-8">
+                    <div class="button-back"><a href="
+                        @if (str_contains(url()->previous(), 'edit'))
+                       {{ route('projects.index') }}
+                   @else
+                       {{ url()->previous() }}
+                       @endif
+                       ">Vissza</a></div>
+                </div>
             </div>
         </div>
         <div>
@@ -45,6 +54,7 @@
                                     <form action="{{ route('contacts.store')}}" method="POST">
                                         @csrf
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                            <input type="text" value="-1" name="project_id">
                                             <input type="text" name="name" size="35" maxlength="35" placeholder="a kapcsolattartó neve" class="border-2 border-solid border-gray-400 rounded-md p-1"></input>
                                         </td>
                                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">

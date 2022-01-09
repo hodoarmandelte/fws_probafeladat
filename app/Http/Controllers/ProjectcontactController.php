@@ -34,9 +34,14 @@ class ProjectcontactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store(Request $request)
     {
-        //
+        $projcontact = new Projectcontact();
+        $validated = $request->validate([
+            'project_id' => 'required|numeric',
+            'contact_id' => 'required|numeric',
+        ]);
+        $projcontact->fill($validated)->save();
     }
 
     /**

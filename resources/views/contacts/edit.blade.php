@@ -20,6 +20,9 @@
                     </div>
                     @endif
                 </div>
+                <div class="lg:ml-40 ml-10 space-x-8">
+                    <button class="button-back"><a href="{{ url()->previous() }}">Vissza</a></button>
+                </div>
             </div>
         </div>
         <div>
