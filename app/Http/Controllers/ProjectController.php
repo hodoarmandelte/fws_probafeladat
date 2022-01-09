@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Mail\ProjectChanged;
 use App\Models\Projectcontact;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -112,9 +114,20 @@ class ProjectController extends Controller
         ]);
 
         $project->update($request->all());
+        if($project->wasChanged())
+        {
+            $changes = $project->getChanges();
+            //dd($changes);
+            $maillist = $project->contacts->pluck('email', 'name')->all();
+            //  a Factory generált mailok elméletileg safek, de hogy ne legyen egy marék mail spamolva, commented.
+            //  Teszteléshez, real emailcímekkel: uncomment
+            // foreach ($maillist as $mailadress )
+            // {
+            //     Mail::to($mailadress->email)->send(new ProjectChanged($changes,$mailadress->name));
+            // }
+        }
         session()->flash('project_updated');
         return Redirect::back();
-        //return response()->json(array('success' => true, 'project_edit_result'=>'ok'));
 
     }
 

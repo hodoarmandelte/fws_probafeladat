@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectcontactController;
+use App\Mail\ProjectChanged;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +31,3 @@ Route::resource('projects', ProjectController::class);
 Route::resource('contacts', ContactController::class);
 
 Route::resource('projectcontacts', ProjectcontactController::class);
-
-
-
