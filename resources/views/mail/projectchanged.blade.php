@@ -43,5 +43,5 @@ Az alábbi adatok módosultak:
 @endcomponent
 
 Üdvözlettel,<br>
-FWS-HS Csapata
+FWS-HA Csapata
 @endcomponent

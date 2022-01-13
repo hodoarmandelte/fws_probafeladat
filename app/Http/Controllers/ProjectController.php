@@ -119,7 +119,6 @@ class ProjectController extends Controller
         if($project->wasChanged())
         {
             $changes = $project->getChanges();
-            //dd($changes);
             $maillist = $project->contacts->pluck('email', 'name')->all();
             //  a Factory generált mailok elméletileg safek, de hogy ne legyen egy marék mail spamolva, commented.
             //  Teszteléshez, real emailcímekkel: uncomment
