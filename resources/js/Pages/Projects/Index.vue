@@ -67,7 +67,6 @@
 import Pagination from "../../Shared/Pagination.vue";
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
-//import throttle from "lodash/throttle";
 import debounce from "lodash/debounce";
 
 

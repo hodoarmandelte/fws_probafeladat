@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Project;
 use App\Mail\ProjectChanged;
 use App\Models\Projectcontact;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -20,9 +22,26 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::paginate(10);
-        $filter = 3;
-        return view('projects/index')->with(compact('projects'))->with(compact('filter'));
+        // $projects = Project::paginate(10);
+        // $filter = 3;
+        // return view('projects/index')->with(compact('projects'))->with(compact('filter'));
+        return Inertia::render(
+            'Projects/Index',
+            [
+                'users' => Project::query()
+                ->when(Request::input('search'), function($query, $search)
+                {
+                    $query->where('name', 'like',  '%'.$search.'%');        // '%' anything wildcard
+                })
+                ->paginate(10)
+                ->withQueryString()
+                ->through(fn($project) =>[
+                    'id' => $project->id,
+                    'name' => $project->name
+                ]),
+                'filters' => Request::only(['search'])
+            ]
+        );
     }
 
     /**
