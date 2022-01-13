@@ -39,7 +39,8 @@ class ProjectController extends Controller
                     'id' => $project->id,
                     'name' => $project->name
                 ]),
-                'filters' => Request::only(['search'])
+                'filters' => Request::only(['search']),
+                'header_title' => 'Projektlista'
             ]
         );
     }

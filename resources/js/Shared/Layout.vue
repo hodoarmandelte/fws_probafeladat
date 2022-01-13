@@ -1,17 +1,36 @@
 <template lang="">
     <Head>
-        <title>InertiaJS</title>
-        <meta type="description" content="Very awesome much wow InertiaJS projekt, a Laracasts InertiaJS kurzus alapján" head-key="description">
+        <title>{{ $page.props.header_title}}</title>
+        <meta
+            type="description"
+            content="Projekt lista"
+            head-key="description"
+        />
     </Head>
 
-    <section class="p-6 bg-gray-200">
+    <section class="p-6 bg-amber-500 opacity-80">
         <header class="flex justify-between">
-            <div class="flex items-center">
-                <h1 class="font-bold text-lg">MY App</h1>
-                <p class="text-sm ml-4">
-                    Welcome Back, {{ username}}
-                </p>
-            </div>
+            <a href="">
+                <div class="flex items-center space-x-2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-10 w-10 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                    </svg>
+                    <h1 class="text-white font-bold text-xl">
+                        FWS-HA Próbafeladat - {{ $page.props.header_title}}
+                    </h1>
+                </div>
+            </a>
 
             <Nav />
         </header>
@@ -20,18 +39,14 @@
         <div class="max-w-3xl mx-auto"><slot /></div>
     </section>
 </template>
-<script>
+
+<script setup>
 import Nav from "../Shared/Nav";
 import { Head } from "@inertiajs/inertia-vue3";
 
-export default {
-    components: { Nav, Head },
-    computed: {
-        username()
-        {
-            return this.$page.props.auth.user.username;
-        }
-    }
-};
+defineProps({
+    header_title: String,
+});
+
 </script>
 <style lang=""></style>

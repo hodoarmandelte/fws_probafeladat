@@ -1,8 +1,4 @@
 <template>
-    <Head>
-        <title>Users</title>
-    </Head>
-
     <div class="flex justify-between mb-6">
         <div class="flex items-center">
             <h1 class="text-3xl font-bold">Users</h1>

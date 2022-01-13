@@ -20,7 +20,7 @@ createInertiaApp({
       .mount(el)
   },
 
-  title: title => "InertiaJS - "+title
+  title: title => "FWS-HA - "+title
 
 });
 
