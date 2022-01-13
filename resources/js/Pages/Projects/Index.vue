@@ -1,10 +1,10 @@
 <template>
     <div class="flex justify-between mb-6">
         <div class="flex items-center">
-            <h1 class="text-3xl font-bold">Users</h1>
+            <h1 class="text-3xl font-bold">projects</h1>
 
-            <Link href="/users/create" class="text-blue-500 text-sm ml-3"
-                >New User</Link
+            <Link href="/projects/create" class="text-blue-500 text-sm ml-3"
+                >New project</Link
             >
         </div>
 
@@ -23,40 +23,75 @@
                 <div
                     class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
                 >
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <tr v-for="user in users.data" :key="user.id">
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="ml-4">
-                                            <div
-                                                class="text-sm font-medium text-gray-900"
-                                            >
-                                                {{ user.name }}
-                                            </div>
-                                        </div>
-                                    </div>
+
+                    <table
+                        class="min-w-full divide-y divide-gray-200 leading-normal"
+                    >
+                        <thead>
+                            <tr>
+                                <th class="crud-th">Név</th>
+                                <th class="crud-th">Státusz</th>
+                                <th class="crud-th">Kapcsolattartók</th>
+                                <th class="crud-th">Műveletek</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr
+                                v-for="project in projects.data"
+                                :key="project.id"
+                                class="crud-tr"
+                                id="tr_{{project.id }}"
+                            >
+                                <td class="crud-td">
+                                    <p id="name_{{ project.id }}">
+                                        {{ project.name }}
+                                    </p>
+                                </td>
+                                <td class="crud-td">
+                                    <StateInfo :state="project.state" />
+                                </td>
+                                <td class="crud-td">
+                                    <p id="contacts_{{ project.id }}">
+                                        {{ project.contacts }} db
+                                    </p>
                                 </td>
                                 <td
-                                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                                    id="project_buttons_{{$project.id }}"
+                                    class="crud-td flex justify-start"
                                 >
-                                    <Link
-                                        :href="'/users/' + user.id + '/edit'"
-                                        class="text-indigo-600 hover:text-indigo-900"
+                                    <div
+                                        id="project_edit_button_{{ project.id }}"
+                                        class="w-6 mr-2 transform hover:text-yellow-400 hover:scale-110"
                                     >
-                                        Edit
-                                    </Link>
+                                        <Link
+                                            :href="
+                                                '/projects/' +
+                                                project.id +
+                                                '/edit'
+                                            "
+                                        >
+                                            <EditIcon />
+
+                                        </Link>
+                                    </div>
+                                    <div
+                                        id="project_delete_button_{{ project.id }}"
+                                        class="w-6 mr-2 transform hover:text-red-600 hover:scale-110 cursor-pointer"
+                                        onclick="mark_project_for_delete({{ $project }})"
+                                    >
+                                        <span title="Törlés">
+                                            <DeleteIcon />
+                                        </span>
+                                    </div>
                                 </td>
                             </tr>
-
-                            <!-- More people... -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <Pagination :links="users.links" class="mt-6" />
+    <Pagination :links="projects.links" class="mt-6" />
 </template>
 
 <script setup>
@@ -65,22 +100,26 @@ import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import debounce from "lodash/debounce";
 
-
+import DeleteIcon from "../../Ui/Svg/DeleteIcon.vue";
+import EditIcon from "../../Ui/Svg/EditIcon.vue";
+import StateInfo from "../../Ui/StateInfo.vue";
 
 let props = defineProps({
-    users: Object,
+    projects: Object,
     filters: Object,
 });
 
 let search = ref(props.filters.search);
 
-watch(search, debounce(function (value)
- {
-    //  GET->(oldal, adat, opciók)
-    Inertia.get(
-        "/users",
-        { search: value },
-        { preserveState: true, replace: true }
-    );
-}, 300));
+watch(
+    search,
+    debounce(function (value) {
+        //  GET->(oldal, adat, opciók)
+        Inertia.get(
+            "/projects",
+            { search: value },
+            { preserveState: true, replace: true }
+        );
+    }, 300)
+);
 </script>

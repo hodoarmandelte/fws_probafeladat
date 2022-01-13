@@ -36,7 +36,7 @@
         </header>
     </section>
     <section class="p-6">
-        <div class="max-w-3xl mx-auto"><slot /></div>
+        <div class="max-w-screen-2xl mx-auto"><slot /></div>
     </section>
 </template>
 

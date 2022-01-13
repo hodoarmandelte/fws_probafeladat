@@ -143,7 +143,7 @@ var _hoisted_8 = {
   "class": "p-6"
 };
 var _hoisted_9 = {
-  "class": "max-w-3xl mx-auto"
+  "class": "max-w-screen-2xl mx-auto"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"], null, {

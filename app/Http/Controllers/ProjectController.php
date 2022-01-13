@@ -28,16 +28,19 @@ class ProjectController extends Controller
         return Inertia::render(
             'Projects/Index',
             [
-                'users' => Project::query()
+                'projects' => Project::query()
                 ->when(Request::input('search'), function($query, $search)
                 {
-                    $query->where('name', 'like',  '%'.$search.'%');        // '%' anything wildcard
+                    $query->where('state', 'like',  '%'.$search.'%');        // '%' anything wildcard
                 })
                 ->paginate(10)
                 ->withQueryString()
                 ->through(fn($project) =>[
                     'id' => $project->id,
-                    'name' => $project->name
+                    'name' => $project->name,
+                    'desc' => $project->desc,
+                    'state' => $project->state,
+                    'contacts' => $project->contacts->count()
                 ]),
                 'filters' => Request::only(['search']),
                 'header_title' => 'Projektlista'
