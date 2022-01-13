@@ -1,16 +1,26 @@
 <template>
     <div class="flex justify-between mb-6">
-        <div class="flex items-center">
-            <h1 class="text-3xl font-bold">projects</h1>
+        <h1 class="text-3xl font-bold">Projektek</h1>
 
-            <Link href="/projects/create" class="text-blue-500 text-sm ml-3"
-                >New project</Link
+        <div>
+            <select
+                v-model="search"
+                class="mt-1 w-full form-select font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center text-gray-800 bg-gray-200 hover:bg-gray-100 border-2 border-solid border-gray-600"
             >
+                <option :value="0">Összes</option>
+                <option :value="-1">Fejlesztésre vár</option>
+                <option :value="1">Folyamatban</option>
+                <option :value="2">Kész</option>
+            </select>
         </div>
-         <div>
-             <StateFilterSelector :statefilter="search"/>
-         </div>
 
+        <div>
+            <div class="lg:ml-40 ml-10 space-x-8">
+                <button class="button-new">
+                    <a href="projects/create"><span>Új Projekt</span></a>
+                </button>
+            </div>
+        </div>
     </div>
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -20,7 +30,6 @@
                 <div
                     class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
                 >
-
                     <table
                         class="min-w-full divide-y divide-gray-200 leading-normal"
                     >
@@ -68,7 +77,6 @@
                                             "
                                         >
                                             <EditIcon />
-
                                         </Link>
                                     </div>
                                     <div
@@ -88,11 +96,12 @@
             </div>
         </div>
     </div>
-    <Pagination :links="projects.links" class="mt-6" />
+    <div class="flex mt-2 mb-6 justify-center">
+        <Pagination :links="projects.links" />
+    </div>
 </template>
 
 <script setup>
-import Pagination from "../../Shared/Pagination.vue";
 import { ref, watch } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 import debounce from "lodash/debounce";
@@ -100,14 +109,14 @@ import debounce from "lodash/debounce";
 import DeleteIcon from "../../Ui/Svg/DeleteIcon.vue";
 import EditIcon from "../../Ui/Svg/EditIcon.vue";
 import StateInfo from "../../Ui/StateInfo.vue";
-import StateFilterSelector from "../../Ui/StateFilterSelector.vue";
+import Pagination from "../../Shared/Pagination.vue";
 
 let props = defineProps({
     projects: Object,
     filters: Object,
 });
 
-let search = ref(props.filters.search);
+let search = ref(props.filters.search)? ref(props.filters.search) :'0';
 
 watch(
     search,
@@ -115,7 +124,7 @@ watch(
         //  GET->(oldal, adat, opciók)
         Inertia.get(
             "/projects",
-            { statefilter: value },
+            { search: value },
             { preserveState: true, replace: true }
         );
     }, 300)
