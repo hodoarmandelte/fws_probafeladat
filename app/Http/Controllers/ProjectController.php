@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use phpDocumentor\Reflection\Types\Null_;
 
 class ProjectController extends Controller
 {
@@ -31,7 +32,20 @@ class ProjectController extends Controller
                 'projects' => Project::query()
                 ->when(Request::input('search'), function($query, $search)
                 {
-                    $query->where('state', 'like',  '%'.$search.'%');        // '%' anything wildcard
+                    $statetypes = ['-1','1','2'];
+                    if ( !in_array($search, $statetypes))
+                    {
+                        $search='';
+                    }
+                    else
+                    {
+                        //  DB-ben a fejlesztésre várók 0 értékűek, de get query stringben value=0 az null, így a -1-re szűri a nullásokat
+                        if ($search=='-1')
+                        {
+                            $search='0';
+                        }
+                        $query->where('state','=',$search);        // '%' anything wildcard
+                    }
                 })
                 ->paginate(10)
                 ->withQueryString()
@@ -46,27 +60,6 @@ class ProjectController extends Controller
                 'header_title' => 'Projektlista'
             ]
         );
-    }
-
-    /**
-     * Kategóriára szűrt eredmények
-     *
-     * @param  int $filter
-     * @return \Illuminate\Http\Response
-     */
-    public function index_filtered($filter)
-    {
-        $statetypes = ['0','1','2'];
-        if ( !in_array($filter, $statetypes))
-        {
-            $projects = Project::paginate(10);
-            return redirect()->route('projects.index');
-        }
-        else
-        {
-            $projects = Project::where('state','=',$filter)->paginate(10);
-            return view('projects/index')->with(compact('projects'))->with(compact('filter'));
-        }
     }
 
     /**

@@ -7,13 +7,10 @@
                 >New project</Link
             >
         </div>
+         <div>
+             <StateFilterSelector :statefilter="search"/>
+         </div>
 
-        <input
-            v-model="search"
-            type="text"
-            placeholder="search..."
-            class="border px-2 rounded-lg"
-        />
     </div>
     <div class="flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -103,6 +100,7 @@ import debounce from "lodash/debounce";
 import DeleteIcon from "../../Ui/Svg/DeleteIcon.vue";
 import EditIcon from "../../Ui/Svg/EditIcon.vue";
 import StateInfo from "../../Ui/StateInfo.vue";
+import StateFilterSelector from "../../Ui/StateFilterSelector.vue";
 
 let props = defineProps({
     projects: Object,
@@ -117,7 +115,7 @@ watch(
         //  GET->(oldal, adat, opciók)
         Inertia.get(
             "/projects",
-            { search: value },
+            { statefilter: value },
             { preserveState: true, replace: true }
         );
     }, 300)
