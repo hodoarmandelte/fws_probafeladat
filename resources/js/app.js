@@ -6,6 +6,8 @@ import { InertiaProgress } from '@inertiajs/progress';
 import {Link, Head} from '@inertiajs/inertia-vue3';
 import Layout from "./Shared/Layout";
 
+require('./bootstrap');
+
 createInertiaApp({
   resolve: async name => {
                         let page = (await import(`./Pages/${name}`)).default;

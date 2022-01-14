@@ -46,7 +46,7 @@
                                 v-for="project in projects.data"
                                 :key="project.id"
                                 class="crud-tr"
-                                id="tr_{{project.id }}"
+                                :id="'tr_'+project.id"
                             >
                                 <td class="crud-td">
                                     <p id="name_{{ project.id }}">
@@ -84,7 +84,7 @@
                                     <div
                                         id="project_delete_button_{{ project.id }}"
                                         class="w-6 mr-2 transform hover:text-red-600 hover:scale-110 cursor-pointer"
-                                        onclick="mark_project_for_delete({{ $project }})"
+                                        onclick="mark_project_for_delete({{ project }})"
                                     >
                                         <span title="Törlés">
                                             <DeleteIcon />
