@@ -63,7 +63,7 @@
                                 </td>
                                 <td
                                     id="project_buttons_{{$project.id }}"
-                                    class="crud-td flex justify-start"
+                                    class="crud-td flex justify-start space-x-2"
                                 >
                                     <div
                                         id="project_edit_button_{{ project.id }}"
@@ -76,7 +76,9 @@
                                                 '/edit'
                                             "
                                         >
-                                            <EditIcon />
+                                            <span title="Szerkesztés">
+                                                <EditIcon />
+                                            </span>
                                         </Link>
                                     </div>
                                     <div
@@ -116,7 +118,7 @@ let props = defineProps({
     filters: Object,
 });
 
-let search = ref(props.filters.search)? ref(props.filters.search) :'0';
+let search = ref(props.filters.search) ? ref(props.filters.search) : "0";
 
 watch(
     search,

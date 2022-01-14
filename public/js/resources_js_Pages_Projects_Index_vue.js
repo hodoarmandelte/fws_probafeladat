@@ -35,7 +35,7 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var props = __props;
-    var search = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.filters.search) ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.filters.search) : '0';
+    var search = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.filters.search) ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(props.filters.search) : "0";
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(search, lodash_debounce__WEBPACK_IMPORTED_MODULE_2___default()(function (value) {
       //  GET->(oldal, adat, opciók)
       _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_1__.Inertia.get("/projects", {
@@ -278,21 +278,24 @@ var _hoisted_19 = {
 };
 var _hoisted_20 = {
   id: "project_buttons_{{$project.id }}",
-  "class": "crud-td flex justify-start"
+  "class": "crud-td flex justify-start space-x-2"
 };
 var _hoisted_21 = {
   id: "project_edit_button_{{ project.id }}",
   "class": "w-6 mr-2 transform hover:text-yellow-400 hover:scale-110"
 };
 var _hoisted_22 = {
+  title: "Szerkesztés"
+};
+var _hoisted_23 = {
   id: "project_delete_button_{{ project.id }}",
   "class": "w-6 mr-2 transform hover:text-red-600 hover:scale-110 cursor-pointer",
   onclick: "mark_project_for_delete({{ $project }})"
 };
-var _hoisted_23 = {
+var _hoisted_24 = {
   title: "Törlés"
 };
-var _hoisted_24 = {
+var _hoisted_25 = {
   "class": "flex mt-2 mb-6 justify-center"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -322,17 +325,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       href: '/projects/' + project.id + '/edit'
     }, {
       "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["EditIcon"])];
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["EditIcon"])])];
       }),
       _: 2
       /* DYNAMIC */
 
     }, 1032
     /* PROPS, DYNAMIC_SLOTS */
-    , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DeleteIcon"])])])])]);
+    , ["href"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["DeleteIcon"])])])])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Pagination"], {
+  ))])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Pagination"], {
     links: $props.projects.links
   }, null, 8
   /* PROPS */

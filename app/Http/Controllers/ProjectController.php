@@ -110,9 +110,9 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        $project = Project::findOrFail($id);
+        $project = Project::findOrFail($id,['id','name', 'desc', 'state']);
         $contacts = $project->contacts;
-        return view('projects/edit')->with(compact('project'))->with(compact('contacts'));
+        return Inertia::render('Projects/Edit',['project' => $project, 'contacts' => $contacts, 'header_title' => 'Projekt szerkesztése']);
     }
 
     /**
@@ -124,7 +124,6 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //dd($project->id);
         $request->validate([
             'name' => 'required|string|unique:projects,name,'.$project->id.'|max:35',
             'desc' => 'required|string|max:128',

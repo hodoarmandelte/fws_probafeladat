@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Mail;
 */
 
 Route::get('/', function () {
-    return Redirect::route('projects.index');
+    return Redirect::route('projects.index', ['search'=> '0']);
 });
 
 Route::get('/projects_filtered/{filter}', [ProjectController::class, 'index_filtered'])->name('index_filtered');
