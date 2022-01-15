@@ -3,14 +3,20 @@
                                 <div
                                     class="crud-td"
                                 >
-                                    <p>{{ contact.id }}</p>
+                                    <input
+                                        type="hidden"
+                                        id="new_contact_project_id"
+                                        name="project_id"
+                                        :value="props.project_id"
+                                    />
+                                    <p>Új</p>
                                 </div>
                                 <div
                                     class="crud-td"
                                 >
                                     <input
-                                        :id="'contact_name_' + contact.id"
-                                        :value="contact.name"
+                                        id="new_contact_name"
+                                        placeholder="új kontaktszemély neve"
                                         type="text"
                                         name="name"
                                         size="50"
@@ -22,8 +28,8 @@
                                     class="crud-td"
                                 >
                                     <input
-                                        :id="'contact_email_' + contact.id"
-                                        :value="contact.email"
+                                        id="new_contact_email"
+                                        placeholder="új kontaktszemély email címe"
                                         type="text"
                                         name="email"
                                         size="50"
@@ -32,37 +38,28 @@
                                     />
                                 </div>
                                 <div
-                                    :id="'contact_buttons_' + contact.id"
+                                    id="new_contact_buttons"
                                     class="crud-td flex item-center justify-start space-x-2"
                                 >
                                     <div
                                         title="Mentés"
-                                        v-on:click="editcontact(contact.id)"
+                                        v-on:click="addcontact()"
                                         class="w-6 mr-2 mt-1 transform hover:text-blue-600 hover:scale-110 hover:cursor-pointer"
                                     >
                                         <span title="Mentés">
                                             <SaveIcon />
                                         </span>
                                     </div>
-                                    <button
-                                        title="Törlés"
-                                        v-on:click="deletecontact(contact.id)"
-                                        class="w-6 mr-2 transform hover:text-red-600 hover:scale-110"
-                                    >
-                                        <DeleteIcon />
-                                    </button>
                                 </div>
                             </form>
 </template>
 <script setup>
 
-import DeleteIcon from "../Ui/Svg/DeleteIcon.vue";
-import SaveIcon from "../Ui/Svg/SaveIcon.vue";
-import editcontact from "../edit_contact.js";
-import deletecontact from "../delete_contact.js";
+import SaveIcon from "./Svg/SaveIcon.vue";
+import addcontact from "../create_contact.js";
 
 let props = defineProps({
-    contact: Object,
+    project_id: Number,
     errors: Object,
 });
 

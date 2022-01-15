@@ -21,17 +21,17 @@ function deletecontact(contactid) {
       console.log(contactid + ". kontakt törlési kérelme sikeresen feldolgoza szerveroldalon.");
       $('#contact_row_' + contactid).addClass('invisible');
       $('#contact_row_' + contactid).html('');
-      $('#ModalTitle').html(data.modal_title);
-      $('#ModalText').html(data.modal_text);
-      $('#ModalContainer').removeClass('invisible');
+      $('#UModalTitle').html(data.modal_title);
+      $('#UModalText').html(data.modal_text);
+      $('#UModalContainer').removeClass('invisible');
     },
     error: function error(xhr, ajaxOptions, thrownError) {
       console.log("Törlési kérelem feldolgozása közben szerverhiba lépett fel:");
       console.log(xhr.status);
       console.log(thrownError);
-      $('#ModalTitle').html('Hiba!');
-      $('#ModalText').html('Törlési kérelem feldolgozása közben szerverhiba lépett fel: ' + xhr.status + '   ' + thrownError);
-      $('#ModalContainer').removeClass('invisible');
+      $('#UModalTitle').html('Hiba!');
+      $('#UModalText').html('Törlési kérelem feldolgozása közben szerverhiba lépett fel: ' + xhr.status + '   ' + thrownError);
+      $('#UModalContainer').removeClass('invisible');
     }
   });
 }

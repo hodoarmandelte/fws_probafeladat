@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Contact;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\Projectcontact;
 use Illuminate\Support\Facades\Log;
@@ -42,23 +44,45 @@ class ContactController extends Controller
     public function store(StoreContactRequest $request)
     {
         $contact = new Contact;
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|unique:contacts,name|max:35',
             'email' => 'required|email|max:128',
             'project_id' => 'numeric'
         ]);
-        $contact->fill($validated)->save();
-
-        if ($validated['project_id'] != '-1')       //  nem a create view-ból
+        if ($validator->fails())
         {
-            $linktoprojectrequest = new Request;
-            $linktoprojectrequest->setMethod('POST');
-            $linktoprojectrequest->request->add(['project_id' => $validated['project_id']]);
-            $linktoprojectrequest->request->add(['contact_id' => $contact->id]);
-            ProjectcontactController::store($linktoprojectrequest);
+            return response()->json([
+                'modal' => true,
+                'modal_title' => 'Kontakt létrehozása sikertelen!',
+                'modal_text' => $contact->name.' kontaktszemély létrehozása sikertelen: Hiányzó/hibás név (max. 35 karakter) vagy email (valód email, max. 128 karakter)',
+                'modal_color' => 'red'
+           ]);
         }
-        session()->flash('contact_saved');
-        return Redirect::back();
+        else
+        {
+            $contact = new Contact;
+            $validated = $request->validate([
+                'name' => 'required|string|unique:contacts,name|max:35',
+                'email' => 'required|email|max:128',
+                'project_id' => 'numeric'
+            ]);
+            $contact->fill($validated)->save();
+
+            if ($validated['project_id'] != '-1')
+            {
+                $linktoprojectrequest = new Request;
+                $linktoprojectrequest->setMethod('POST');
+                $linktoprojectrequest->request->add(['project_id' => $validated['project_id']]);
+                $linktoprojectrequest->request->add(['contact_id' => $contact->id]);
+                ProjectcontactController::store($linktoprojectrequest);
+            }
+            return response()->json([
+                'modal' => true,
+                'modal_title' => 'Kontakt létrehozása sikeres!',
+                'modal_text' => $contact->name.' kontaktszemély létrehozása sikeressen megtörtént.',
+                'modal_color' => 'green'
+           ]);
+        }
     }
 
     /**
@@ -80,8 +104,9 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        $contact = Contact::findOrFail($id);
-        return view('contacts/edit')->with(compact('contact'));
+        //Projektnél szerkeszthető
+        //$contact = Contact::findOrFail($id);
+        //return view('contacts/edit')->with(compact('contact'));
     }
 
     /**

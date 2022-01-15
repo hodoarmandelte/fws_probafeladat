@@ -115,7 +115,7 @@ var _hoisted_3 = {
   "class": "flex justify-between"
 };
 var _hoisted_4 = {
-  href: ""
+  href: "/"
 };
 var _hoisted_5 = {
   "class": "flex items-center space-x-2"

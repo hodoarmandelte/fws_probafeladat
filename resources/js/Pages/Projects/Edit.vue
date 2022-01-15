@@ -1,6 +1,13 @@
 <template lang="">
     <Head title="Projekt szerkesztése" />
-    <h1 class="text-3xl">Projekt szerkesztése</h1>
+    <div class="flex items-center justify-between">
+        <h1 class="text-3xl">Projekt szerkesztése</h1>
+        <div class="flex items-center mr-5">
+                <div class="button-back">
+                    <a href="/">Vissza</a>
+                </div>
+        </div>
+    </div>
     <div>
         <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div
@@ -26,7 +33,7 @@
                                 type="text"
                                 name="name"
                                 id="name"
-                                size="35"
+                                size="50"
                                 maxlength="35"
                                 class="border-2 border-solid border-gray-400 rounded-md p-1"
                                 required
@@ -43,8 +50,8 @@
                                 type="text"
                                 name="name"
                                 id="name"
-                                size="35"
-                                maxlength="35"
+                                size="50"
+                                maxlength="128"
                                 class="border-2 border-solid border-gray-400 rounded-md p-1"
                                 required
                             />
@@ -55,7 +62,16 @@
                             ></div>
                         </div>
                         <div class="crud-td">
-                            <div>State</div>
+                            <div>
+                            <select
+                                v-model="form.state"
+                                class="mt-1 w-64 form-select font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center text-gray-800 bg-gray-200 hover:bg-gray-100 border-2 border-solid border-gray-600"
+                            >
+                                <option :value="0">Fejlesztésre vár</option>
+                                <option :value="1">Folyamatban</option>
+                                <option :value="2">Kész</option>
+                            </select>
+                            </div>
                             <div
                                 v-if="form.errors.state"
                                 v-text="form.errors.state"
@@ -81,7 +97,7 @@
                 <div class="crud-th border-b-2 border-dashed">
                     Kapcsolattartók adatai
                 </div>
-                <table class="min-w-full leading-normal table-auto">
+                <div class="min-w-full leading-normal table-auto">
                     <div class="grid grid-cols-4 min-w-full leading-normal">
                         <div class="crud-th">ID</div>
                         <div class="crud-th">Név</div>
@@ -92,32 +108,32 @@
                         <div
                             v-for="contact in contacts"
                             :key="contact.id"
-
                             :id="'contact_row_' + contact.id"
                         >
-                            <ContactEdit :contact="contact"/>
+                            <ContactEdit :contact="contact" />
                         </div>
 
-                        <tr class="crud-new-contact-tr" id="new_contact_tr">
-                            <td>
+                        <div class="crud-new-contact-tr" id="new_contact_tr">
+                            <div>
                                 <div class="pl-3">
                                     Új kontaktszemély felvétele
                                 </div>
-                            </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                            </div>
+                        </div>
+                        <div>
+                            <ContactCreate :project_id="props.project.id"/>
+                        </div>
                     </div>
-                </table>
+                </div>
             </div>
         </div>
     </div>
-    <UniversalModal modal_visible="false"
-                    modal_color="blue"
-                    modal_title="Default"
-                    modal_text="Default"
-                    modal_extraaction=""/>
+    <UniversalModal
+        modal_visible="false"
+        modal_color="blue"
+        modal_title="Default"
+        modal_text="Default"
+    />
 </template>
 
 <script setup>
@@ -128,6 +144,7 @@ import UniversalModal from "../../Ui/Modals/UniversalModal.vue";
 import SaveIcon from "../../Ui/Svg/SaveIcon.vue";
 import PlusIcon from "../../Ui/Svg/PlusIcon.vue";
 import ContactEdit from "../../Ui/ContactEdit.vue";
+import ContactCreate from "../../Ui/ContactCreate.vue";
 
 let props = defineProps({
     project: Object,
@@ -146,5 +163,4 @@ let submit = () => {
     form.put("/projects/" + props.project.id);
 };
 </script>
-<style lang="">
-</style>
+<style lang=""></style>

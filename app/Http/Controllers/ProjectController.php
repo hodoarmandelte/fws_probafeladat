@@ -142,7 +142,6 @@ class ProjectController extends Controller
             //     Mail::to($mailadress->email)->send(new ProjectChanged($changes,$mailadress->name));
             // }
         }
-        session()->flash('project_updated');
         return Redirect::back();
 
     }
@@ -162,6 +161,11 @@ class ProjectController extends Controller
         error_log('--proj-del--'.$id.' projekt sikeresen törölve.');
         Log::info('--proj-del--'.$id.' projekt sikeresen törölve.');
 
-        return response()->json(array('success' => true, 'project_del_result'=>'ok'));
+        return response()->json([
+            'modal' => true,
+            'modal_title' => 'Kontakt törlése sikeres!',
+            'modal_text' => $project->name.' kontaktszemély törlése sikeressen megtörtént.',
+            'modal_color' => 'red'
+       ]);
     }
 }

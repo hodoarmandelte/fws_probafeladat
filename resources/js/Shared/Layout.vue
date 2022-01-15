@@ -10,7 +10,7 @@
 
     <section class="p-6 bg-amber-500 opacity-80">
         <header class="flex justify-between">
-            <a href="">
+            <a href="/">
                 <div class="flex items-center space-x-2">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

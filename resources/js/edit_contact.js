@@ -15,18 +15,18 @@ function editcontact(contactid)
         success:function(data)
         {
             console.log(contactid+". kontakt változtatási kérelme sikeresen feldolgoza szerveroldalon.");
-            $('#ModalTitle').html(data.modal_title);
-            $('#ModalText').html(data.modal_text);
-            $('#ModalContainer').removeClass('invisible');
+            $('#UModalTitle').html(data.modal_title);
+            $('#UModalText').html(data.modal_text);
+            $('#UModalContainer').removeClass('invisible');
         },
         error:function(xhr, ajaxOptions, thrownError)
         {
             console.log("Módosítási kérelem feldolgozása közben szerverhiba lépett fel:");
             console.log(xhr.status);
             console.log(thrownError);
-            $('#ModalTitle').html('Hiba!');
-            $('#ModalText').html('Módosítási kérelem feldolgozása közben szerverhiba lépett fel: '+xhr.status+'   '+thrownError);
-            $('#ModalContainer').removeClass('invisible');
+            $('#UModalTitle').html('Hiba!');
+            $('#UModalText').html('Módosítási kérelem feldolgozása közben szerverhiba lépett fel: '+xhr.status+'   '+thrownError);
+            $('#UModalContainer').removeClass('invisible');
         }
     });
 }
