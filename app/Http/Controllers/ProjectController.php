@@ -163,8 +163,8 @@ class ProjectController extends Controller
 
         return response()->json([
             'modal' => true,
-            'modal_title' => 'Kontakt törlése sikeres!',
-            'modal_text' => $project->name.' kontaktszemély törlése sikeressen megtörtént.',
+            'modal_title' => 'Projekt törlése sikeres!',
+            'modal_text' => $project->name.' projekt törlése sikeressen megtörtént.',
             'modal_color' => 'red'
        ]);
     }

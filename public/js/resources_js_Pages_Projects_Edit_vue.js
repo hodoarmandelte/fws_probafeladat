@@ -264,7 +264,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex items-center justify-between\"><h1 class=\"text-3xl\">Projekt szerkesztése</h1><div class=\"flex items-center mr-5\"><div class=\"button-back\"><a href=\"/\">Vissza</a></div></div></div>", 1);
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex items-center justify-between\"><h1 class=\"text-3xl\">Projekt szerkesztése</h1><div class=\"flex items-center mr-5\"><a href=\"/\"><div class=\"button-back\">Vissza a projektekhez</div></a></div></div>", 1);
 
 var _hoisted_2 = {
   "class": "-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto"

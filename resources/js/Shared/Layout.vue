@@ -31,8 +31,6 @@
                     </h1>
                 </div>
             </a>
-
-            <Nav />
         </header>
     </section>
     <section class="p-6">
@@ -41,7 +39,7 @@
 </template>
 
 <script setup>
-import Nav from "../Shared/Nav";
+
 import { Head } from "@inertiajs/inertia-vue3";
 
 defineProps({

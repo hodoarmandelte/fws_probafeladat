@@ -46,10 +46,10 @@
                                 v-for="project in projects.data"
                                 :key="project.id"
                                 class="crud-tr"
-                                :id="'tr_'+project.id"
+                                :id="'project_row_'+project.id"
                             >
                                 <td class="crud-td">
-                                    <p id="name_{{ project.id }}">
+                                    <p :id="'name_'+project.id">
                                         {{ project.name }}
                                     </p>
                                 </td>
@@ -57,16 +57,16 @@
                                     <StateInfo :state="project.state" />
                                 </td>
                                 <td class="crud-td">
-                                    <p id="contacts_{{ project.id }}">
+                                    <p :id="'contacts_'+project.id">
                                         {{ project.contacts }} db
                                     </p>
                                 </td>
                                 <td
-                                    id="project_buttons_{{$project.id }}"
+                                    :id="'project_buttons_'+project.id"
                                     class="crud-td flex justify-start space-x-2"
                                 >
                                     <div
-                                        id="project_edit_button_{{ project.id }}"
+                                        :id="'project_edit_button_'+project.id"
                                         class="w-6 mr-2 transform hover:text-yellow-400 hover:scale-110"
                                     >
                                         <Link
@@ -82,9 +82,9 @@
                                         </Link>
                                     </div>
                                     <div
-                                        id="project_delete_button_{{ project.id }}"
+                                        :id="'project_delete_button_'+project.id"
                                         class="w-6 mr-2 transform hover:text-red-600 hover:scale-110 cursor-pointer"
-                                        onclick="mark_project_for_delete({{ project }})"
+                                        v-on:click="deleteproject(project.id)"
                                     >
                                         <span title="Törlés">
                                             <DeleteIcon />
@@ -101,6 +101,12 @@
     <div class="flex mt-2 mb-6 justify-center">
         <Pagination :links="projects.links" />
     </div>
+        <UniversalModal
+        modal_visible="false"
+        modal_color="blue"
+        modal_title="Default"
+        modal_text="Default"
+    />
 </template>
 
 <script setup>
@@ -112,6 +118,10 @@ import DeleteIcon from "../../Ui/Svg/DeleteIcon.vue";
 import EditIcon from "../../Ui/Svg/EditIcon.vue";
 import StateInfo from "../../Ui/StateInfo.vue";
 import Pagination from "../../Shared/Pagination.vue";
+
+import UniversalModal from "../../Ui/Modals/UniversalModal.vue";
+
+import deleteproject from "../../delete_project.js";
 
 let props = defineProps({
     projects: Object,

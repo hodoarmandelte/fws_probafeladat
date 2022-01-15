@@ -3,9 +3,9 @@
     <div class="flex items-center justify-between">
         <h1 class="text-3xl">Projekt szerkesztése</h1>
         <div class="flex items-center mr-5">
-                <div class="button-back">
-                    <a href="/">Vissza</a>
-                </div>
+            <a href="/">
+                <div class="button-back">Vissza a projektekhez</div>
+            </a>
         </div>
     </div>
     <div>
@@ -63,14 +63,14 @@
                         </div>
                         <div class="crud-td">
                             <div>
-                            <select
-                                v-model="form.state"
-                                class="mt-1 w-64 form-select font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center text-gray-800 bg-gray-200 hover:bg-gray-100 border-2 border-solid border-gray-600"
-                            >
-                                <option :value="0">Fejlesztésre vár</option>
-                                <option :value="1">Folyamatban</option>
-                                <option :value="2">Kész</option>
-                            </select>
+                                <select
+                                    v-model="form.state"
+                                    class="mt-1 w-64 form-select font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center text-gray-800 bg-gray-200 hover:bg-gray-100 border-2 border-solid border-gray-600"
+                                >
+                                    <option :value="0">Fejlesztésre vár</option>
+                                    <option :value="1">Folyamatban</option>
+                                    <option :value="2">Kész</option>
+                                </select>
                             </div>
                             <div
                                 v-if="form.errors.state"
@@ -121,7 +121,7 @@
                             </div>
                         </div>
                         <div>
-                            <ContactCreate :project_id="props.project.id"/>
+                            <ContactCreate :project_id="props.project.id" />
                         </div>
                     </div>
                 </div>
