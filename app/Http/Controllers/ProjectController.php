@@ -69,7 +69,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects/create');
+        return Inertia::render('Projects/Create',['header_title' => 'Projekt létrehozása']);
     }
 
     /**
@@ -87,8 +87,7 @@ class ProjectController extends Controller
             'state' => 'required|digits_between:0,2',
         ]);
         $project->fill($validated)->save();
-        session()->flash('project_saved');
-        return redirect()->route('projects.index');
+        return redirect('/projects?search=0');
     }
 
     /**

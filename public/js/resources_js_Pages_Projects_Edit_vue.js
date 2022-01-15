@@ -14,10 +14,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _Ui_Modals_UniversalModal_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../Ui/Modals/UniversalModal.vue */ "./resources/js/Ui/Modals/UniversalModal.vue");
 /* harmony import */ var _Ui_Svg_SaveIcon_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../Ui/Svg/SaveIcon.vue */ "./resources/js/Ui/Svg/SaveIcon.vue");
-/* harmony import */ var _Ui_Svg_PlusIcon_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Ui/Svg/PlusIcon.vue */ "./resources/js/Ui/Svg/PlusIcon.vue");
-/* harmony import */ var _Ui_ContactEdit_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Ui/ContactEdit.vue */ "./resources/js/Ui/ContactEdit.vue");
-/* harmony import */ var _Ui_ContactCreate_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Ui/ContactCreate.vue */ "./resources/js/Ui/ContactCreate.vue");
-
+/* harmony import */ var _Ui_ContactEdit_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../Ui/ContactEdit.vue */ "./resources/js/Ui/ContactEdit.vue");
+/* harmony import */ var _Ui_ContactCreate_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../Ui/ContactCreate.vue */ "./resources/js/Ui/ContactCreate.vue");
 
 
 
@@ -51,9 +49,8 @@ __webpack_require__.r(__webpack_exports__);
       useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.useForm,
       UniversalModal: _Ui_Modals_UniversalModal_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       SaveIcon: _Ui_Svg_SaveIcon_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-      PlusIcon: _Ui_Svg_PlusIcon_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
-      ContactEdit: _Ui_ContactEdit_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-      ContactCreate: _Ui_ContactCreate_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
+      ContactEdit: _Ui_ContactEdit_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
+      ContactCreate: _Ui_ContactCreate_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -76,7 +73,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Svg_SaveIcon_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Svg/SaveIcon.vue */ "./resources/js/Ui/Svg/SaveIcon.vue");
+/* harmony import */ var _Svg_PlusIcon_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Svg/PlusIcon.vue */ "./resources/js/Ui/Svg/PlusIcon.vue");
 /* harmony import */ var _create_contact_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../create_contact.js */ "./resources/js/create_contact.js");
 /* harmony import */ var _create_contact_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_create_contact_js__WEBPACK_IMPORTED_MODULE_1__);
 
@@ -92,7 +89,7 @@ __webpack_require__.r(__webpack_exports__);
     var props = __props;
     var __returned__ = {
       props: props,
-      SaveIcon: _Svg_SaveIcon_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+      PlusIcon: _Svg_PlusIcon_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
       addcontact: (_create_contact_js__WEBPACK_IMPORTED_MODULE_1___default())
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
@@ -518,8 +515,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $setup.addcontact();
     }),
-    "class": "w-6 mr-2 mt-1 transform hover:text-blue-600 hover:scale-110 hover:cursor-pointer"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["SaveIcon"])])])])], 32
+    "class": "w-6 mr-2 mt-1 transform hover:text-green-600 hover:scale-110 hover:cursor-pointer"
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["PlusIcon"])])])])], 32
   /* HYDRATE_EVENTS */
   );
 }
@@ -862,8 +859,16 @@ function addcontact() {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     success: function success(data) {
-      location.reload();
       console.log("Kontakt létrehozási kérelme sikeresen feldolgoza szerveroldalon.");
+
+      if (!data.modal) {
+        $('#UModalTitle').html(data.modal_title);
+        $('#UModalText').html(data.modal_text);
+        $('#UModalContainer').removeClass('invisible');
+      } else //ok
+        {
+          location.reload();
+        }
     },
     error: function error(xhr, ajaxOptions, thrownError) {
       console.log("Létrehozási kérelem feldolgozása közben szerverhiba lépett fel:");

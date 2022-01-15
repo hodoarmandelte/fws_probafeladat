@@ -52,7 +52,7 @@ class ContactController extends Controller
         if ($validator->fails())
         {
             return response()->json([
-                'modal' => true,
+                'modal' => false,
                 'modal_title' => 'Kontakt létrehozása sikertelen!',
                 'modal_text' => $contact->name.' kontaktszemély létrehozása sikertelen: Hiányzó/hibás név (max. 35 karakter) vagy email (valód email, max. 128 karakter)',
                 'modal_color' => 'red'

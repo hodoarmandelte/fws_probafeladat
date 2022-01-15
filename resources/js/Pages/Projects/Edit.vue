@@ -142,7 +142,6 @@ import { useForm } from "@inertiajs/inertia-vue3";
 import UniversalModal from "../../Ui/Modals/UniversalModal.vue";
 
 import SaveIcon from "../../Ui/Svg/SaveIcon.vue";
-import PlusIcon from "../../Ui/Svg/PlusIcon.vue";
 import ContactEdit from "../../Ui/ContactEdit.vue";
 import ContactCreate from "../../Ui/ContactCreate.vue";
 

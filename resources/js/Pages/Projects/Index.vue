@@ -16,9 +16,11 @@
 
         <div>
             <div class="lg:ml-40 ml-10 space-x-8">
-                <button class="button-new">
-                    <a href="projects/create"><span>Új Projekt</span></a>
-                </button>
+                <a href="projects/create">
+                    <div class="button-new">
+                        <span>Új Projekt</span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -46,10 +48,10 @@
                                 v-for="project in projects.data"
                                 :key="project.id"
                                 class="crud-tr"
-                                :id="'project_row_'+project.id"
+                                :id="'project_row_' + project.id"
                             >
                                 <td class="crud-td">
-                                    <p :id="'name_'+project.id">
+                                    <p :id="'name_' + project.id">
                                         {{ project.name }}
                                     </p>
                                 </td>
@@ -57,16 +59,18 @@
                                     <StateInfo :state="project.state" />
                                 </td>
                                 <td class="crud-td">
-                                    <p :id="'contacts_'+project.id">
+                                    <p :id="'contacts_' + project.id">
                                         {{ project.contacts }} db
                                     </p>
                                 </td>
                                 <td
-                                    :id="'project_buttons_'+project.id"
+                                    :id="'project_buttons_' + project.id"
                                     class="crud-td flex justify-start space-x-2"
                                 >
                                     <div
-                                        :id="'project_edit_button_'+project.id"
+                                        :id="
+                                            'project_edit_button_' + project.id
+                                        "
                                         class="w-6 mr-2 transform hover:text-yellow-400 hover:scale-110"
                                     >
                                         <Link
@@ -82,7 +86,10 @@
                                         </Link>
                                     </div>
                                     <div
-                                        :id="'project_delete_button_'+project.id"
+                                        :id="
+                                            'project_delete_button_' +
+                                            project.id
+                                        "
                                         class="w-6 mr-2 transform hover:text-red-600 hover:scale-110 cursor-pointer"
                                         v-on:click="deleteproject(project.id)"
                                     >
@@ -101,7 +108,7 @@
     <div class="flex mt-2 mb-6 justify-center">
         <Pagination :links="projects.links" />
     </div>
-        <UniversalModal
+    <UniversalModal
         modal_visible="false"
         modal_color="blue"
         modal_title="Default"

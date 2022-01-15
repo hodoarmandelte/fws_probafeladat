@@ -10,12 +10,15 @@
     <script src="{{ mix('/js/vendor.js') }}" defer></script>
     <script src="{{ mix('/js/app.js') }}" defer></script>
 
-
     {{-- @inertiaHead --}}
 </head>
 
 <body>
     @inertia
+    {{-- Tailwind force compile --}}
+    <div hidden>
+        <div class="text-sky-800 bg-sky-200"></div>
+    </div>
 </body>
 
 </html>

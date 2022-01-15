@@ -37,7 +37,7 @@ export default {
                     break;
                 case 2:
                     currentdata.text = "Kész";
-                    color= 'sky';
+                    color = 'sky';
                     break;
             }
             currentdata.textcolor='text-'+color+'-800';

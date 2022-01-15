@@ -15,8 +15,17 @@ function addcontact()
         },
         success:function(data)
         {
-            location.reload();
             console.log("Kontakt létrehozási kérelme sikeresen feldolgoza szerveroldalon.");
+            if(!data.modal)
+            {
+                $('#UModalTitle').html(data.modal_title);
+                $('#UModalText').html(data.modal_text);
+                $('#UModalContainer').removeClass('invisible');
+            }
+            else    //ok
+            {
+                location.reload();
+            }
         },
         error:function(xhr, ajaxOptions, thrownError)
         {

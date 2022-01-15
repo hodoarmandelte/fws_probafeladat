@@ -44,10 +44,10 @@
                                     <div
                                         title="Mentés"
                                         v-on:click="addcontact()"
-                                        class="w-6 mr-2 mt-1 transform hover:text-blue-600 hover:scale-110 hover:cursor-pointer"
+                                        class="w-6 mr-2 mt-1 transform hover:text-green-600 hover:scale-110 hover:cursor-pointer"
                                     >
                                         <span title="Mentés">
-                                            <SaveIcon />
+                                            <PlusIcon />
                                         </span>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
 </template>
 <script setup>
 
-import SaveIcon from "./Svg/SaveIcon.vue";
+import PlusIcon from "./Svg/PlusIcon.vue";
 import addcontact from "../create_contact.js";
 
 let props = defineProps({
