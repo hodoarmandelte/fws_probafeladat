@@ -26,6 +26,9 @@ createInertiaApp({
 
 });
 
+window.$ = require('jquery');
+window.JQuery = require('jquery');
+
 InertiaProgress.init(
     {
         color: 'red',

@@ -1,5 +1,5 @@
 <template lang="">
-<form @submit.prevent="contactsubmit" class="grid grid-cols-4 crud-tr">
+<form @submit.prevent="submit" class="grid grid-cols-4 crud-tr">
                                 <div
                                     class="px-5 py-5 border-b border-gray-200 bg-white text-sm"
                                 >
@@ -10,7 +10,7 @@
                                 >
                                     <input
                                         :id="'contact_name_' + contact.id"
-                                        v-model="contactform.name"
+                                        :value="contact.name"
                                         type="text"
                                         name="name"
                                         size="35"
@@ -23,7 +23,7 @@
                                 >
                                     <input
                                         :id="'contact_email_' + contact.id"
-                                        v-model="contactform.email"
+                                        :value="contact.email"
                                         type="text"
                                         name="email"
                                         size="50"
@@ -35,60 +35,43 @@
                                     :id="'contact_buttons_' + contact.id"
                                     class="crud-td flex item-center justify-start space-x-2"
                                 >
-                                    <button
+                                    <div
                                         title="Mentés"
-                                        type="submit"
-                                        id="submit"
+                                        v-on:click="editcontact(contact.id)"
                                         class="w-6 mr-2 transform hover:text-blue-600 hover:scale-110"
-                                        :disabled="contactform.processing"
                                     >
                                         <span title="Mentés">
                                             <SaveIcon />
                                         </span>
-                                    </button>
-                                    <div
+                                    </div>
+                                    <button
                                         title="Törlés"
+                                        v-on:click="deletecontact(contact.id)"
                                         class="w-6 mt-1 mr-2 transform hover:text-red-600 hover:scale-110"
                                     >
                                         <DeleteIcon />
-                                    </div>
-                                    <button
-                                    :onclick="sendcontactinfo(contact.id)">
-                                                            Klikk e
                                     </button>
                                 </div>
                             </form>
 </template>
 <script setup>
 
-import { useForm } from "@inertiajs/inertia-vue3";
-
 import DeleteIcon from "../Ui/Svg/DeleteIcon.vue";
 import SaveIcon from "../Ui/Svg/SaveIcon.vue";
+import editcontact from "../edit_contact.js";
+import deletecontact from "../delete_contact.js";
+
+//let editcontact = require('../edit_contact.js');
+//let deletecontact = require('../delete_contact.js');
+
 
 let props = defineProps({
     contact: Object,
     errors: Object,
 });
 
-let contactform = useForm({
-    _method: 'put',
-    id: props.contact.id,
-    name: props.contact.name,
-    email: props.contact.email,
-});
-
-let submitcontact = () => {
-    contactform.post("/contacts/" + contact.id);
-};
-
-let sendcontactinfo = (id) =>
-{
-    axios.put('/contacts/'+id, contactform);
-};
 
 </script>
-
 
 <style lang="">
 

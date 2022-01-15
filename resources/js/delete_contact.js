@@ -7,21 +7,8 @@ var disabledbuttongroup = `
 
 // Projekt törlése, megerősítés után
 
-function mark_contact_for_delete(contact)
+function deletecontact(id)
 {
-    var delcommand = 'delete_contact('+contact['id']+')';
-    $('#delconfirmContactInfo_name').html(contact['name']);
-    $('#delconfirmContactInfo_email').html(contact['email']);
-    $('#delconfirmContactInfo_created').html(contact['created_at']);
-    $('#delconfirmContactInfo_lastsaved').html(contact['updated_at']);
-    $("#modal_exec_contact_confirmed_delete").attr('onclick', delcommand);
-    $('#Modal_contact_delconfirm').removeClass('invisible');
-}
-
-
-function delete_contact(id)
-{
-    $('#Modal_contact_delconfirm').addClass('invisible');
     $.ajax({
         type:'DELETE',
         url: '/contacts/'+id,
@@ -51,3 +38,8 @@ function delete_contact(id)
     });
 }
 
+
+
+
+
+module.exports = deletecontact;

@@ -19,4 +19,6 @@ mix.js('resources/js/app.js', 'public/js')
     ])
     .version();
 mix.js('resources/js/jquery-3.6.0.min.js', 'public/js');
+mix.js('resources/js/edit_contact.js', 'public/js');
+mix.js('resources/js/delete_contact.js', 'public/js');
 //mix.copyDirectory('resources/js', 'public/js');

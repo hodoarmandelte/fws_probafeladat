@@ -340,6 +340,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
     return "FWS-HA - " + _title;
   }
 });
+window.$ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+window.JQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_3__.InertiaProgress.init({
   color: 'red',
   showSpinner: true
@@ -362,6 +364,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.$ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -580,27 +583,33 @@ __webpack_require__.r(__webpack_exports__);
 var map = {
 	"./Projects/Create": [
 		"./resources/js/Pages/Projects/Create.vue",
+		9,
 		"resources_js_Pages_Projects_Create_vue"
 	],
 	"./Projects/Create.vue": [
 		"./resources/js/Pages/Projects/Create.vue",
+		9,
 		"resources_js_Pages_Projects_Create_vue"
 	],
 	"./Projects/Edit": [
 		"./resources/js/Pages/Projects/Edit.vue",
+		7,
 		"resources_js_Pages_Projects_Edit_vue"
 	],
 	"./Projects/Edit.vue": [
 		"./resources/js/Pages/Projects/Edit.vue",
+		7,
 		"resources_js_Pages_Projects_Edit_vue"
 	],
 	"./Projects/Index": [
 		"./resources/js/Pages/Projects/Index.vue",
+		9,
 		"/js/vendor",
 		"resources_js_Pages_Projects_Index_vue"
 	],
 	"./Projects/Index.vue": [
 		"./resources/js/Pages/Projects/Index.vue",
+		9,
 		"/js/vendor",
 		"resources_js_Pages_Projects_Index_vue"
 	]
@@ -615,8 +624,8 @@ function webpackAsyncContext(req) {
 	}
 
 	var ids = map[req], id = ids[0];
-	return Promise.all(ids.slice(1).map(__webpack_require__.e)).then(() => {
-		return __webpack_require__(id);
+	return Promise.all(ids.slice(2).map(__webpack_require__.e)).then(() => {
+		return __webpack_require__.t(id, ids[1] | 16)
 	});
 }
 webpackAsyncContext.keys = () => (Object.keys(map));

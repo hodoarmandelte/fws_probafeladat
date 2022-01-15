@@ -75,6 +75,13 @@
                             >
                                 <SaveIcon />
                             </button>
+                            <button
+                                title="Mentés"
+                                :id="'delete_'+form.id"
+                                class="w-6 mr-2 transform hover:text-red-600 hover:scale-110"
+                            >
+                                <DeleteIcon />
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -113,6 +120,7 @@
             </div>
         </div>
     </div>
+
 </template>
 
 <script setup>
@@ -140,7 +148,5 @@ let submit = () => {
     form.put("/projects/" + props.project.id);
 };
 
-
-</script>
-
-<style lang=""></style>
+<style lang="">
+</style>
