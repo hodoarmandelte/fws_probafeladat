@@ -21,11 +21,17 @@ function editcontact(contactid) {
     },
     success: function success(data) {
       console.log(contactid + ". kontakt változtatási kérelme sikeresen feldolgoza szerveroldalon.");
+      $('#ModalTitle').html(data.modal_title);
+      $('#ModalText').html(data.modal_text);
+      $('#ModalContainer').removeClass('invisible');
     },
     error: function error(xhr, ajaxOptions, thrownError) {
-      console.log("Módosítási kérelem feldolgozás közben szerverhiba lépett fel:");
+      console.log("Módosítási kérelem feldolgozása közben szerverhiba lépett fel:");
       console.log(xhr.status);
       console.log(thrownError);
+      $('#ModalTitle').html('Hiba!');
+      $('#ModalText').html('Módosítási kérelem feldolgozása közben szerverhiba lépett fel: ' + xhr.status + '   ' + thrownError);
+      $('#ModalContainer').removeClass('invisible');
     }
   });
 }

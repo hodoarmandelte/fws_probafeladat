@@ -9,32 +9,29 @@
 //  Util:
 var disabledbuttongroup = "\n    <div id=\"project_delete_button_deleted\" class=\"w-6 mr-2 cursor-not-allowed\">\n    <span title=\"T\xF6rl\xF6lt kontakt\">T\xF6r\xF6lve</span></span>\n    </div>"; // Projekt törlése, megerősítés után
 
-function deletecontact(id) {
+function deletecontact(contactid) {
   $.ajax({
     type: 'DELETE',
-    url: '/contacts/' + id,
+    url: '/contacts/' + contactid,
     async: true,
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     },
     success: function success(data) {
-      console.log(id + ". kontakt törlési kérelme sikeresen feldolgoza szerveroldalon.");
-      $('#Modal_contact_delresult').removeClass('invisible');
-      $('#tr_contact_' + id).addClass('deletedrecord');
-
-      if (window.location.href.indexOf("projects") != -1) {
-        $('#contact_buttons_' + id).empty();
-        $('#contact_name_' + id).prop('disabled', true);
-        $('#contact_email_' + id).prop('disabled', true);
-        $('#contact_name_' + id).addClass('cursor-not-allowed');
-        $('#contact_email_' + id).addClass('cursor-not-allowed');
-        $('#contact_buttons_' + id).append(disabledbuttongroup);
-      }
+      console.log(contactid + ". kontakt törlési kérelme sikeresen feldolgoza szerveroldalon.");
+      $('#contact_row_' + contactid).addClass('invisible');
+      $('#contact_row_' + contactid).html('');
+      $('#ModalTitle').html(data.modal_title);
+      $('#ModalText').html(data.modal_text);
+      $('#ModalContainer').removeClass('invisible');
     },
     error: function error(xhr, ajaxOptions, thrownError) {
-      console.log("Törlési kérelem feldolgozás közben szerverhiba lépett fel:");
+      console.log("Törlési kérelem feldolgozása közben szerverhiba lépett fel:");
       console.log(xhr.status);
       console.log(thrownError);
+      $('#ModalTitle').html('Hiba!');
+      $('#ModalText').html('Törlési kérelem feldolgozása közben szerverhiba lépett fel: ' + xhr.status + '   ' + thrownError);
+      $('#ModalContainer').removeClass('invisible');
     }
   });
 }

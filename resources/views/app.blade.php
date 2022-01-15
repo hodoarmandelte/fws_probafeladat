@@ -16,8 +16,6 @@
 
 <body>
     @inertia
-    <!-- teleport target -->
-    <div id="modals"></div>
 </body>
 
 </html>

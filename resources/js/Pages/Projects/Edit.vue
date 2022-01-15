@@ -75,13 +75,6 @@
                             >
                                 <SaveIcon />
                             </button>
-                            <button
-                                title="Mentés"
-                                :id="'delete_'+form.id"
-                                class="w-6 mr-2 transform hover:text-red-600 hover:scale-110"
-                            >
-                                <DeleteIcon />
-                            </button>
                         </div>
                     </div>
                 </form>
@@ -100,7 +93,7 @@
                             v-for="contact in contacts"
                             :key="contact.id"
 
-                            :id="'tr_contact_' + contact.id"
+                            :id="'contact_row_' + contact.id"
                         >
                             <ContactEdit :contact="contact"/>
                         </div>
@@ -120,13 +113,18 @@
             </div>
         </div>
     </div>
-
+    <UniversalModal modal_visible="false"
+                    modal_color="blue"
+                    modal_title="Default"
+                    modal_text="Default"
+                    modal_extraaction=""/>
 </template>
 
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
 
-import DeleteIcon from "../../Ui/Svg/DeleteIcon.vue";
+import UniversalModal from "../../Ui/Modals/UniversalModal.vue";
+
 import SaveIcon from "../../Ui/Svg/SaveIcon.vue";
 import PlusIcon from "../../Ui/Svg/PlusIcon.vue";
 import ContactEdit from "../../Ui/ContactEdit.vue";
@@ -147,6 +145,6 @@ let form = useForm({
 let submit = () => {
     form.put("/projects/" + props.project.id);
 };
-
+</script>
 <style lang="">
 </style>

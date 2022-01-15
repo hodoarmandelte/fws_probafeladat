@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Projectcontact;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreContactRequest;
 use App\Http\Requests\UpdateContactRequest;
 
@@ -92,13 +93,30 @@ class ContactController extends Controller
      */
     public function update(UpdateContactRequest $request, Contact $contact)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required|string|unique:contacts,name,'.$contact->id.'|max:35',
             'email' => 'required|email|max:128',
         ]);
-        $contact->update($request->all());
-        session()->flash('contact_updated');
-        return Redirect::back();
+        if ($validator->fails())
+        {
+            return response()->json([
+                'modal' => true,
+                'modal_title' => 'Kontakt módosítás sikertelen!',
+                'modal_text' => $contact->name.' kontaktszemély módosítása sikertelen: Hiányzó/hibás név (max. 35 karakter) vagy email (valód email, max. 128 karakter)',
+                'modal_color' => 'red'
+           ]);
+        }
+        else
+        {
+            $contact->update($request->all());
+            return response()->json([
+                'modal' => true,
+                'modal_title' => 'Kontakt módosítás sikeres!',
+                'modal_text' => $contact->name.' kontaktszemély módosítása sikeressen megtörtént.',
+                'modal_color' => 'green'
+           ]);
+        }
+
     }
 
     /**
@@ -116,6 +134,11 @@ class ContactController extends Controller
         error_log('--cont-del--'.$contact->id.' kontakt sikeresen törölve.');
         Log::info('--cont-del--'.$contact->id.' kontakt sikeresen törölve.');
 
-        return response()->json(array('success' => true, 'contact_del_result'=>'ok'));
+        return response()->json([
+            'modal' => true,
+            'modal_title' => 'Kontakt törlése sikeres!',
+            'modal_text' => $contact->name.' kontaktszemély törlése sikeressen megtörtént.',
+            'modal_color' => 'red'
+       ]);
     }
 }

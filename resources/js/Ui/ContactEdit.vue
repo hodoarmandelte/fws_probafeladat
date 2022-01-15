@@ -38,7 +38,7 @@
                                     <div
                                         title="Mentés"
                                         v-on:click="editcontact(contact.id)"
-                                        class="w-6 mr-2 transform hover:text-blue-600 hover:scale-110"
+                                        class="w-6 mr-2 mt-1 transform hover:text-blue-600 hover:scale-110 hover:cursor-pointer"
                                     >
                                         <span title="Mentés">
                                             <SaveIcon />
@@ -47,7 +47,7 @@
                                     <button
                                         title="Törlés"
                                         v-on:click="deletecontact(contact.id)"
-                                        class="w-6 mt-1 mr-2 transform hover:text-red-600 hover:scale-110"
+                                        class="w-6 mr-2 transform hover:text-red-600 hover:scale-110"
                                     >
                                         <DeleteIcon />
                                     </button>
@@ -60,10 +60,6 @@ import DeleteIcon from "../Ui/Svg/DeleteIcon.vue";
 import SaveIcon from "../Ui/Svg/SaveIcon.vue";
 import editcontact from "../edit_contact.js";
 import deletecontact from "../delete_contact.js";
-
-//let editcontact = require('../edit_contact.js');
-//let deletecontact = require('../delete_contact.js');
-
 
 let props = defineProps({
     contact: Object,
